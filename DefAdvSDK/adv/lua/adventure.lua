@@ -216,7 +216,9 @@ end
 
 function M.deletecommands(self)
 	if M.commands then
-		msg.post(M.player,"unlockanim",{kind="all"})
+		if M.player then
+			msg.post(M.player,"unlockanim",{kind="all"})
+		end
 		msg.post("hud", "settextcolor",{color="white"})				
 	end	
 	M.commands=nil
@@ -1308,7 +1310,9 @@ function M.handle_cursormovements(self,action)
 	else
 		msg.post("hud","cursor_set",{position=pos,status=activity,desc=mydesc})		
 	end
-	msg.post(M.player, "look_at",{lookat=dest})	
+	if M.player then
+		msg.post(M.player, "look_at",{lookat=dest})
+	end
 
 	M.lastaction=action
 end
